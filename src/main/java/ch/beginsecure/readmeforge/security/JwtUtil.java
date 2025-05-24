@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "replace_this_with_a_very_secure_key_which_is_at_least_256_bits_long";
+    private final String KEY = "replace_this_with_a_very_secure_key_which_is_at_least_256_bits_long";
 
-    private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    private final Key key = Keys.hmacShaKeyFor(KEY.getBytes());
 
     public String generateToken(String username) {
         return Jwts.builder()

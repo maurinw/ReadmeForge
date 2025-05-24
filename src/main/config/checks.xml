@@ -31,7 +31,9 @@
         <module name="ConstantName" />
         <module name="LocalFinalVariableName" />
         <module name="LocalVariableName" />
+        <!-- disable metrics
         <module name="MemberName" />
+        -->
         <module name="MethodName" />
         <module name="PackageName" />
         <module name="ParameterName" />

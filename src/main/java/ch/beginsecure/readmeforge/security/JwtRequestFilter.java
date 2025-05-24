@@ -35,43 +35,43 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-        final String authorizationHeader = request.getHeader("Authorization");
+        String authHeader = request.getHeader("Authorization");
         String username = null;
         String jwt = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwt = authorizationHeader.substring(7);
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            jwt = authHeader.substring(7);
             try {
                 username = jwtUtil.extractUsername(jwt);
             } catch (ExpiredJwtException e) {
-                logger.warn("JWT token has expired for request " + request.getRequestURI() + ": " + e.getMessage());
+                logger.warn("Expired JWT for " + request.getRequestURI());
             } catch (UnsupportedJwtException e) {
-                logger.warn("Unsupported JWT token for request " + request.getRequestURI() + ": " + e.getMessage());
+                logger.warn("Unsupported JWT for " + request.getRequestURI());
             } catch (MalformedJwtException e) {
-                logger.warn("Malformed JWT token for request " + request.getRequestURI() + ": " + e.getMessage());
+                logger.warn("Malformed JWT for " + request.getRequestURI());
             } catch (SignatureException e) {
-                logger.warn("JWT signature validation failed for request " + request.getRequestURI() + ": " + e.getMessage());
+                logger.warn("Invalid JWT signature for " + request.getRequestURI());
             } catch (IllegalArgumentException e) {
-                logger.warn("JWT token compact of handler are invalid for request " + request.getRequestURI() + ": " + e.getMessage());
+                logger.warn("Invalid JWT token for " + request.getRequestURI());
             }
         } else {
-            if (request.getRequestURI().startsWith("/api/") && !request.getRequestURI().startsWith("/api/auth")) {
-                logger.warn("Authorization header missing or not Bearer for protected API: " + request.getRequestURI());
+            if (request.getRequestURI().startsWith("/api/")
+                    && !request.getRequestURI().startsWith("/api/auth")) {
+                logger.warn("Invalid header for protected endpoint: " + request.getRequestURI());
             }
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userRepository.findByUsername(username).orElse(null);
+            UserDetails userDetails = userRepository.findByUsername(username).orElse(null);
 
             if (userDetails != null) {
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                UsernamePasswordAuthenticationToken token =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                logger.info("Successfully authenticated user '" + username + "' and set SecurityContext for " + request.getRequestURI());
+                token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(token);
+                logger.info("Authenticated user " + username + " for " + request.getRequestURI());
             } else {
-                logger.warn("User '" + username + "' extracted from JWT not found in database for " + request.getRequestURI());
+                logger.warn("User not found: " + username + " for " + request.getRequestURI());
             }
         }
         chain.doFilter(request, response);

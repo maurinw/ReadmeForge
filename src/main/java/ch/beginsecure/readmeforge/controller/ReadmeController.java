@@ -3,7 +3,6 @@ package ch.beginsecure.readmeforge.controller;
 import ch.beginsecure.readmeforge.model.Readme;
 import ch.beginsecure.readmeforge.model.User;
 import ch.beginsecure.readmeforge.repository.ReadmeRepository;
-import ch.beginsecure.readmeforge.repository.UserRepository; // for delete checks later
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -34,7 +33,8 @@ public class ReadmeController {
     @PostMapping
     public Readme create(@RequestBody Readme readme, @AuthenticationPrincipal User currentUser) {
         if (currentUser == null) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Cannot create readme without an authenticated user.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                    "Cannot create readme without an authenticated user.");
         }
         readme.setOwner(currentUser);
         return readmeRepository.save(readme);
