@@ -1,0 +1,28 @@
+:root{
+
+    --rf-rem-spacer-1:      0.3rem;
+    --rf-rem-spacer-2:      0.5rem;
+    --rf-rem-spacer-3:      0.8rem;
+    --rf-rem-spacer-4:      1.0rem;
+    --rf-rem-spacer-5:      1.3rem;
+    --rf-rem-spacer-6:      1.5rem;
+    --rf-rem-spacer-7:      1.8rem;
+    --rf-rem-spacer-8:      2.0rem;
+    --rf-rem-spacer-9:      2.2rem;
+    --rf-rem-spacer-10:     2.5rem;
+    --rf-rem-spacer-12:     3.0rem;
+
+
+    --rf-px-spacer-1:       4px;
+    --rf-px-spacer-2:       8px;
+    --rf-px-spacer-3:       12px;
+    --rf-px-spacer-4:       16px;
+    --rf-px-spacer-5:       20px;
+    --rf-px-spacer-8:       32px;
+    --rf-px-spacer-7:       28px;
+    --rf-px-spacer-6:       24px;
+    --rf-px-spacer-9:       36px;
+    --rf-px-spacer-10:      40px;
+    --rf-px-spacer-12:      48px;
+
+}

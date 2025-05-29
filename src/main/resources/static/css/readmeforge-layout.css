@@ -1,0 +1,58 @@
+/*      base        */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+}
+
+/*      navigation      */
+
+nav {
+    flex: 0 1 auto;
+    padding: var(--rf-px-spacer-4);
+}
+
+.nav-items {
+    display: flex;
+    justify-content: end;
+    gap: var(--rf-px-spacer-3);
+}
+
+/*      main layout     */
+
+main {
+    flex: 1 1 auto;
+    padding: var(--rf-px-spacer-4);
+}
+
+/*      footer      */
+
+footer {
+    flex: 0 1 auto;
+    padding: var(--rf-px-spacer-4);
+}
+
+/*      editor layout       */
+
+.editor {
+    display: grid;
+    grid-template-columns: 300px 1fr 1fr;
+    height: 100%;
+    overflow: hidden;
+    gap: var(--rf-px-spacer-3);
+}
+
+@media (max-width: 768px) {
+    .editor {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto;
+        overflow: visible;
+    }
+}

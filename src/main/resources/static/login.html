@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="css/readmeforge.css">
 </head>
 <body>
-<h1>Login</h1>
-<input type="text" id="loginUsername" placeholder="Username" />
-<input type="password" id="loginPassword" placeholder="Password" />
-<button onclick="login()">Login</button>
+<nav>
+    <div class="nav-items">
+        <a href="register.html">Register</a>
+    </div>
+</nav>
 
-<p>Don’t have an account? <a href="register.html">Register here</a></p>
+<main>
+    <h1>Login</h1>
+    <input type="text" id="loginUsername" placeholder="Username" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button onclick="login()">Login</button>
+
+    <p>Don’t have an account? <a href="register.html">Register here</a></p>
+</main>
 
 <script src="js/auth.js"></script>
 </body>

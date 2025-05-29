@@ -2,21 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ReadmeForge</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="css/readmeforge.css">
 </head>
 <body>
-<h1>ReadmeForge</h1>
 
-<button onclick="logout()">Logout</button>
-<a href="profile.html">Profile</a>
+<nav>
+    <div class="nav-items">
+        <button onclick="logout()">Logout</button>
+        <a href="profile.html">Profile</a>
+    </div>
+</nav>
 
-<label for="readmeContent">Content:</label>
-<textarea id="readmeContent" placeholder="Enter README markdown..."></textarea>
+<main>
+    <div class="editor">
+        <div class="card">
+            <label for="readmeContent">Components</label>
+            <div class="card-content">
+                content ..
+            </div>
+        </div>
+        <div class="card">
+            <label for="readmeContent">Content</label>
+            <div class="card-content">
+                <textarea id="readmeContent" placeholder="Enter README markdown..."></textarea>
+            </div>
+        </div>
+        <div class="card">
+            <label for="readmeContent">Preview</label>
+            <div class="card-content">
+                content ..
+            </div>
+        </div>
+    </div>
+</main>
 
-<label for="readmeTitle">Title:</label>
-<input id="readmeTitle" placeholder="Enter title" />
+<footer>
+    <label for="readmeTitle">Title:</label>
+    <input id="readmeTitle" placeholder="Enter title"/>
 
-<button onclick="saveReadme()">Save</button>
+    <button onclick="saveReadme()">Save</button>
+</footer>
+
 
 <script src="js/app.js"></script>
 <script src="js/index.js"></script>
