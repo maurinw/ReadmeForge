@@ -14,8 +14,9 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding-top: var(--rf-px-spacer-3);
+    border: solid 1px;
     min-height: 0;
+    margin-top: var(--rf-px-spacer-3);
 }
 
 @media (max-width: 768px) {
@@ -31,5 +32,6 @@ textarea {
     width: 100%;
     box-sizing: border-box;
     resize: none;
+    border: none;
 }
 
